@@ -8,20 +8,27 @@ dotenv.config();
 const app = express();
 
 
+
 const PORT = process.env.PORT || 5001;
+
+
+connectDB();
+
+//Middleware
+
+app.use(express.json())
+
 
 app.use("/api/notes", notesRoutes)
 
-connectDB(); 
+app.listen(PORT, () => {
+    console.log("server start on PORT: ", PORT)
 
-app.listen(PORT, ()=> {
-    console.log("server start on PORT: ",PORT)
-    
 })
 
 
 //https://www.youtube.com/watch?v=F9gB5b4jgOI
-//time 01:07:10
+//time 01:26:
 //dbname: thinkboard
 //mongo password: rdvQqyRbVpPWaXmB
 
