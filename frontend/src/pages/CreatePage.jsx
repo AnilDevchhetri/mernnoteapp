@@ -1,8 +1,9 @@
-import axios from 'axios'
+
 import { ArrowLeftIcon } from 'lucide-react'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { Link, useNavigate } from "react-router"
+import api from '../lib/axios'
 
 const CreatePage = () => {
     const [title, setTitle] = useState("")
@@ -19,12 +20,17 @@ const CreatePage = () => {
         }
         setLoading(true);
         try {
-            await axios.post("http://localhost:5001/api/notes/", { title, content })
+            await api.post("/notes/", { title, content })
             toast.success("Note created successfully")
             navigate("/")
         } catch (error) {
             console.log("error is ", error)
-            toast.error("Faild to create note please try again letter")
+            if (error.resposne.status === 429) {
+                toast.error("Slwo donw You have crating notes too fast")
+            } else {
+                toast.error("Faild to create note please try again letter")
+            }
+
         }
         finally {
             setLoading(false)
@@ -47,8 +53,8 @@ const CreatePage = () => {
                                 </div>
                                 <div className='form-control mb-4'>
                                     <label className='label'>
-                                        <span className='label-text'>Title</span></label>
-                                    <textarea type='text' placeholder=' Title' className='input input-bordered h-32' value={content} onChange={(e) => setContent(e.target.value)} />
+                                        <span className='label-text'>Description</span></label>
+                                    <textarea type='text' placeholder=' Description' className='input input-bordered h-32' value={content} onChange={(e) => setContent(e.target.value)} />
 
                                 </div>
                                 <div className='card-actions justify-end'>
