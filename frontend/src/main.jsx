@@ -13,5 +13,3 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-// https://www.youtube.com/watch?v=F9gB5b4jgOI&ab_channel=freeCodeCamp.org
-// time: 2.42

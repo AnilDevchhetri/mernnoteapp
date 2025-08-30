@@ -39,8 +39,7 @@ connectDB().then(() => {
 
 
 
-//https://www.youtube.com/watch?v=F9gB5b4jgOI
-//time 01:46:
+
 //dbname: thinkboard
 //mongo password: rdvQqyRbVpPWaXmB
 
